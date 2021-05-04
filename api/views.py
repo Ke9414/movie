@@ -18,7 +18,7 @@ class ListMovie(views.APIView):
             movies = MovieList.objects.all()
             serializer = MovieListSerializers(movies, many=True)
             return Response(serializer.data)
-    # permission_classes = [IsAuthenticated, ]
+            permission_classes = [IsAuthenticated, ]
 
     # def post(self, request, format=None):
     #     serializer = MovieListSerializers(data=request.data)
@@ -40,6 +40,7 @@ class CreateMovie(views.APIView):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+            permission_classes = [IsAuthenticated, ]
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 # Show detail movie
@@ -93,6 +94,7 @@ class UpdateMovie(views.APIView):
             serializer = RatingsMovieSerializer(movies, data=request.data)
             if serializer.is_valid():
                 serializer.save()
+                permission_classes = [IsAuthenticated, ]
                 return Response(serializer.data)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -111,4 +113,5 @@ class DeleteMoview(views.APIView):
         if request.method == "DELETE":
             movie = self.get_object(pk)
             movie.delete()
+            permission_classes = [IsAuthenticated, ]
             return Response(status=status.HTTP_204_NO_CONTENT)
