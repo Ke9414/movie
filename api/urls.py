@@ -1,7 +1,7 @@
 from django.urls import path, include
 from api.views import ListMovie, CreateMovie, MovieDetails, UpdateMovie, DeleteMoview
 from rest_framework.routers import DefaultRouter
-
+# using routers
 # router = DefaultRouter()
 # router.register("ListMovie", ListMovie)
 # router.register("RatingsMovie", RatingsMovie)
